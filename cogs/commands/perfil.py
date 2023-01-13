@@ -16,7 +16,7 @@ class Perfil(commands.Cog):
     description="Crie ou altere seu perfil no CodeFreelas"
   )
   async def Perfil(self, interaction: discord.Interaction):
-    user = requests.get(f"{config['base_url']}{interaction.user.id}")
+    user = requests.get(f"{config['base_url']}/{interaction.user.id}")
 
     if user.status_code != 200:
       modal = generate_modal()  
@@ -99,7 +99,7 @@ def generate_modal(user=None):
         return
 
     try:
-      response = requests.post("http://localhost:7777/codify", json=user)
+      response = requests.post(f"{config['base_url']}/", json=user)
     except:
       await interaction.response.send_message("Erro ao conectar com o servidor!", ephemeral=True)
       return

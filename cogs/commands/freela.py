@@ -85,7 +85,7 @@ def generate_modal():
       return
 
     try:
-      response = requests.post(f"{config['base_url']}freela", json=freela)
+      response = requests.post(f"{config['base_url']}/freela", json=freela)
     except:
       await interaction.response.send_message("Erro ao conectar com o servidor!", ephemeral=True)
       return

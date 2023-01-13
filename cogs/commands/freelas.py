@@ -44,7 +44,7 @@ class Dropdown_(discord.ui.Select):
 
       if action == 'finish':
         try:
-          requests.put(f"{config['base_url']}{interaction.user.id}/{self.freela_id}")
+          requests.put(f"{config['base_url']}/{interaction.user.id}/{self.freela_id}")
         except:
           await interaction.response.send_message('Erro ao concluir o freela', ephemeral=True)
           return
@@ -81,7 +81,7 @@ def generate_dropdown_(freela_id: int):
   return select
 
 def generate_dropdown(user_id: int):
-  response = json.loads(requests.get(f"{config['base_url']}{user_id}").content)
+  response = json.loads(requests.get(f"{config['base_url']}/{user_id}").content)
 
   options = []
   for i in response["freelas"]:
@@ -93,7 +93,7 @@ def generate_dropdown(user_id: int):
   return select, options
 
 def generate_modal(user_id: int, freela_id: int):
-  response = json.loads(requests.get(f"{config['base_url']}{user_id}/{freela_id}").content)
+  response = json.loads(requests.get(f"{config['base_url']}/{user_id}/{freela_id}").content)
 
   modal = discord.ui.Modal(title='Editar Freela')
   modal.add_item(discord.ui.TextInput(
@@ -164,7 +164,7 @@ def generate_modal(user_id: int, freela_id: int):
       return
 
     try:
-      response = requests.post(f"{config['base_url']}{user_id}/{freela_id}", json=freela)
+      response = requests.post(f"{config['base_url']}/{user_id}/{freela_id}", json=freela)
       
     except:
       await interaction.response.send_message("Erro ao conectar com o servidor!", ephemeral=True)
