@@ -81,7 +81,10 @@ def generate_dropdown_(freela_id: int):
   return select
 
 def generate_dropdown(user_id: int):
-  response = json.loads(requests.get(f"{config['base_url']}/{user_id}").content)
+  try:
+    response = json.loads(requests.get(f"{config['base_url']}/{user_id}").content)
+  except:
+    return None, False
 
   options = []
   for i in response["freelas"]:

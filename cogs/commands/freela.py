@@ -4,6 +4,8 @@ from discord.ext import commands
 import requests
 import re
 
+import json
+
 from config import config
 
 class Freela(commands.Cog):
@@ -15,6 +17,12 @@ class Freela(commands.Cog):
     description="Cadastrar um pedido de freela"
   )
   async def Freela(self, interaction: discord.Interaction):
+    try:
+      json.loads(requests.get(f"{config['base_url']}/{interaction.user.id}").content)
+    except:
+      await interaction.response.send_message('Você não está cadastrado no CodeFreelas!', ephemeral=True)
+      return
+    
     modal = generate_modal()
     await interaction.response.send_modal(modal)
     return

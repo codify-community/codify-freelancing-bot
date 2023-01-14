@@ -33,7 +33,7 @@ def generate_modal(user=None):
     default=user["name"] if user else None,
     label='Nome',
     style= discord.TextStyle.short,
-    placeholder='Seu Nome Aqui',
+    placeholder='Codify',
     required=True,
     min_length=4,
     max_length=30
@@ -50,7 +50,7 @@ def generate_modal(user=None):
     default=user["banner_url"] if user else None,
     label='Banner',
     style=discord.TextStyle.short,
-    placeholder='Links do imgur! Dimenções recomendadas: 1660x533',
+    placeholder='Dimenções recomendadas: 1660x533 (Link do Imgur)',
     required=False,
   ))
   modal.add_item(discord.ui.TextInput(
@@ -66,7 +66,7 @@ def generate_modal(user=None):
     default=user["instagram"] if user else None,
     label='Instagram',
     style=discord.TextStyle.short,
-    placeholder='viinilv',
+    placeholder='codifycmt',
     required=False,
     max_length=15
   ))
